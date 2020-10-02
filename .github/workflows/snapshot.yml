@@ -25,14 +25,26 @@ name: Assign to snapshot project
 on:
   issues:
     types: [labeled]
+  pull_request:
+    types: [labeled]
 
-jobs:
-  automate-project-columns:
+#jobs:
+#  automate-project-columns:
+# runs-on: ubuntu-latest
+#    if: github.event.label.name == 'snapshot'
+#    steps:
+#      - uses: alex-page/github-project-automation-plus@v0.3.0
+#        with:
+#          project: 'Snapshot+Restore'
+#          column: 'To do'
+#          repo-token: ${{ secrets.GITHUB_TOKEN }}
+jobs:    
+  assign_one_project:
     runs-on: ubuntu-latest
+    name: Assign to One Project
     if: github.event.label.name == 'snapshot'
     steps:
-      - uses: alex-page/github-project-automation-plus@v0.3.0
-        with:
-          project: 'Snapshot+Restore'
-          column: 'To do'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: snapshot labels
+      uses: srggrs/assign-one-project-github-action@1.2.0
+      with:
+        project: 'https://github.com/DanHeidinga/ToyTest/projects/1'
