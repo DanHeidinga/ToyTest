@@ -41,6 +41,8 @@ env:
 #          project: 'Snapshot+Restore'
 #          column: 'To do'
 #          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+# Source: https://github.com/marketplace/actions/assign-to-one-project
 jobs:    
   assign_one_project:
     runs-on: ubuntu-latest
